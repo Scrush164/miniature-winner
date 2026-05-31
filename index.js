@@ -9,7 +9,7 @@ let liabilities = [];
 
 //Calculation Functions
 //Not much tbh
-function getNetWorth(assets,liabilites){
+function getNetWorth(assets,liabilities){
  return assets - liabilities;
 }
 
