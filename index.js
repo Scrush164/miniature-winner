@@ -119,7 +119,7 @@ function updateNetWorth() {
     netWorthElement.classList.toggle('negative', netWorth < 0);
 }
 
-// Delete handler
+// Delete handler/listener
 document.addEventListener('click', (event) => {
     if (event.target.classList.contains('delBtn')) {
         const index = event.target.getAttribute('data-index');
