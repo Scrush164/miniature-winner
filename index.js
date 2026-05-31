@@ -30,6 +30,30 @@ function loadData() {
     updateDisplay();
 }
 
+function  updateLiabilitiesList() {
+  const container = document.getElementById('liabilitiesList');
+
+  const html = `
+    <ul>
+      ${liabilities.map(item => `<li>${item}</li>`).join('')}
+    </ul>
+  `;
+  container.innerHTML = html;
+}
+
+function  updateAssetsList() {
+  const container = document.getElementById('assetsList');
+
+  const html = `
+    <ul>
+      ${liabilities.map(item => `<li>${item}</li>`).join('')}
+    </ul>
+  `;
+  container.innerHTML = html;
+}
+
+
+
 function updateDisplay() {
     updateAssetsList();
     updateLiabilitiesList();
