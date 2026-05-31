@@ -63,6 +63,7 @@ function updateDisplay() {
 
 
 function addAsset() {
+    event.preventDefault();
     const name = document.getElementById('assetName').value;    // Get user input
     const amount = parseFloat(document.getElementById('assetAmount').value);
 
@@ -79,6 +80,7 @@ function addAsset() {
 }
 
 function addLiability() {
+    event.preventDefault();
     const name = document.getElementById('liabilityName').value;
     const amount = parseFloat(document.getElementById('liabilityAmount').value);
 
