@@ -35,7 +35,7 @@ function  updateLiabilitiesList() {
 
   const html = `
     <ul>
-      ${assets.map(item => `<li>${item}</li>`).join('')}
+      ${liabilities.map(item => `<li>${item.name} - $${item.amount}</li>`).join('')}
     </ul>
   `;
   container.innerHTML = html;
@@ -62,7 +62,7 @@ function updateDisplay() {
 
 
 
-function addAsset() {
+function addAsset(event) {
     event.preventDefault();
     const name = document.getElementById('assetName').value;    // Get user input
     const amount = parseFloat(document.getElementById('assetAmount').value);
@@ -79,7 +79,7 @@ function addAsset() {
     saveData();
 }
 
-function addLiability() {
+function addLiability(event) {
     event.preventDefault();
     const name = document.getElementById('liabilityName').value;
     const amount = parseFloat(document.getElementById('liabilityAmount').value);
@@ -90,6 +90,8 @@ function addLiability() {
     }
     
     liabilities.push({ id: Date.now(), name, amount });
+    document.getElementById('liabilityName').value = '';
+    document.getElementById('liabilityAmount').value = '';
     updateDisplay();
     saveData();
 }
@@ -104,3 +106,5 @@ function updateNetWorth() {
     netWorthElement.textContent = '$' + netWorth.toFixed(2);
     netWorthElement.classList.toggle('negative', netWorth < 0);
 }
+
+window.addEventListener('load', loadData);
