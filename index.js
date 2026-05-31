@@ -4,7 +4,7 @@
 //But I will have to put the list up here...
 
 let assets = [];
-let liabilites = [];
+let liabilities = [];
 
 
 //Calculation Functions
@@ -46,7 +46,7 @@ function  updateAssetsList() {
 
   const html = `
     <ul>
-      ${liabilities.map(item => `<li>${item}</li>`).join('')}
+      ${assets.map(item => `<li>${item}</li>`).join('')}
     </ul>
   `;
   container.innerHTML = html;
