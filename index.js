@@ -35,7 +35,13 @@ function  updateLiabilitiesList() {
 
   const html = `
     <ul>
-      ${liabilities.map(item => `<li>${item.name} - $${item.amount}</li>`).join('')}
+      ${liabilities.map((item, index) => `
+        <li>
+          ${item.name} - $${item.amount}
+          <button class="delBtn" data-index="${index}" data-type="liabilitiesList">
+            ×
+          </button>
+        </li>`).join('')}
     </ul>
   `;
   container.innerHTML = html;
@@ -46,7 +52,13 @@ function  updateAssetsList() {
 
   const html = `
     <ul>
-      ${assets.map(item => `<li>${item.name} - $${item.amount}</li>`).join('')}
+      ${assets.map((item, index) => `
+        <li>
+          ${item.name} - $${item.amount}
+          <button class="delBtn" data-index="${index}" data-type="assetsList">
+            ×
+          </button>
+        </li>`).join('')}
     </ul>
   `;
   container.innerHTML = html;
@@ -106,5 +118,22 @@ function updateNetWorth() {
     netWorthElement.textContent = '$' + netWorth.toFixed(2);
     netWorthElement.classList.toggle('negative', netWorth < 0);
 }
+
+// Delete handler
+document.addEventListener('click', (event) => {
+    if (event.target.classList.contains('delBtn')) {
+        const index = event.target.getAttribute('data-index');
+        const type = event.target.getAttribute('data-type');
+        
+        if (type === 'assetsList') {
+            assets.splice(index, 1);
+        } else if (type === 'liabilitiesList') {
+            liabilities.splice(index, 1);
+        }
+        
+        updateDisplay();
+        saveData();
+    }
+});
 
 window.addEventListener('load', loadData);
