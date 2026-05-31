@@ -35,7 +35,7 @@ function  updateLiabilitiesList() {
 
   const html = `
     <ul>
-      ${liabilities.map(item => `<li>${item}</li>`).join('')}
+      ${assets.map(item => `<li>${item}</li>`).join('')}
     </ul>
   `;
   container.innerHTML = html;
@@ -46,7 +46,7 @@ function  updateAssetsList() {
 
   const html = `
     <ul>
-      ${assets.map(item => `<li>${item}</li>`).join('')}
+      ${assets.map(item => `<li>${item.name} - $${item.amount}</li>`).join('')}
     </ul>
   `;
   container.innerHTML = html;
@@ -81,6 +81,11 @@ function addAsset() {
 function addLiability() {
     const name = document.getElementById('liabilityName').value;
     const amount = parseFloat(document.getElementById('liabilityAmount').value);
+
+  if (!name || isNaN(amount) || amount < 0) {
+        alert('Please enter a valid liability name and amount');
+        return;
+    }
     
     liabilities.push({ id: Date.now(), name, amount });
     updateDisplay();
