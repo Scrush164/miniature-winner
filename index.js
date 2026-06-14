@@ -14,21 +14,48 @@ function getNetWorth(assets,liabilities){
 }
 
 //Action Functions
+//The Fetch helper functions are definitely actions, Maybe I just have to replace the logic inside the first two
+//much easier than calling local storage on every other function
+//I've become familiar with async and await, i like that more then the then stuff.
 
-function saveData() {
-    localStorage.setItem('assets', JSON.stringify(assets));
-    localStorage.setItem('liabilities', JSON.stringify(liabilities));
+async function saveData() {  
+  await fetch('/api/data', { 
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ assets, liabilities })           // I wondered what api/data leads to, 
+  });
 }
 
-function loadData() {
-    const savedAssets = localStorage.getItem('assets');
-    const savedLiabilities = localStorage.getItem('liabilities');
-    
-    if (savedAssets) assets = JSON.parse(savedAssets);
-    if (savedLiabilities) liabilities = JSON.parse(savedLiabilities);
-    
-    updateDisplay();
+
+async function loadData(){
+ //I found out that fetch api automatically does GET so this is unnecessary
+ const response = await fetch('/api/data',{
+  method: 'GET' //would it be get or request?
+ });
+
+   const data = await response.json();
+  
+  if (data.assets) assets = data.assets;
+  if (data.liabilities) liabilities = data.liabilities;
+  
+  updateDisplay();
 }
+
+
+//function saveData() {
+    //localStorage.setItem('assets', JSON.stringify(assets));
+    //localStorage.setItem('liabilities', JSON.stringify(liabilities));
+//}
+
+//function loadData() {
+    //const savedAssets = localStorage.getItem('assets');
+    //const savedLiabilities = localStorage.getItem('liabilities');
+    
+    //if (savedAssets) assets = JSON.parse(savedAssets);
+    //if (savedLiabilities) liabilities = JSON.parse(savedLiabilities);
+    
+    //updateDisplay();
+//}
 
 function  updateLiabilitiesList() {
   const container = document.getElementById('liabilitiesList');
