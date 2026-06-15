@@ -33,29 +33,29 @@ async function loadData(){
   method: 'GET' //would it be get or request?
  });
 
-   const data = await response.json();
-  
-  if (data.assets) assets = data.assets;
-  if (data.liabilities) liabilities = data.liabilities;
-  
-  updateDisplay();
+    const data = await response.json();
+   
+   if (data.assets) assets = data.assets;
+   if (data.liabilities) liabilities = data.liabilities;
+   
+   updateDisplay();
 }
 
 
 //function saveData() {
-    //localStorage.setItem('assets', JSON.stringify(assets));
-    //localStorage.setItem('liabilities', JSON.stringify(liabilities));
-//}
+     //localStorage.setItem('assets', JSON.stringify(assets));
+     //localStorage.setItem('liabilities', JSON.stringify(liabilities));
+ //}
 
-//function loadData() {
-    //const savedAssets = localStorage.getItem('assets');
-    //const savedLiabilities = localStorage.getItem('liabilities');
-    
-    //if (savedAssets) assets = JSON.parse(savedAssets);
-    //if (savedLiabilities) liabilities = JSON.parse(savedLiabilities);
-    
-    //updateDisplay();
-//}
+ //function loadData() {
+     //const savedAssets = localStorage.getItem('assets');
+     //const savedLiabilities = localStorage.getItem('liabilities');
+     
+     //if (savedAssets) assets = JSON.parse(savedAssets);
+     //if (savedLiabilities) liabilities = JSON.parse(savedLiabilities);
+     
+     //updateDisplay();
+ //}
 
 function  updateLiabilitiesList() {
   const container = document.getElementById('liabilitiesList');
@@ -126,7 +126,7 @@ function addLiability(event) {
   if (!name || isNaN(amount) || amount < 0) {
         alert('Please enter a valid liability name and amount');
         return;
-    }
+     }
     
     liabilities.push({ id: Date.now(), name, amount });
     document.getElementById('liabilityName').value = '';

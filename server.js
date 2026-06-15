@@ -6,7 +6,7 @@ const app = express();
 const dataFile = path.join(process.cwd(), 'data.json');
 
 app.use(express.json());
-app.use(express.static('public'));
+app.use(express.static('.'));
 
 // Initialize data.json if it doesn't exist
 const initializeData = () => {
@@ -30,11 +30,6 @@ app.get('/api/data', (req, res) => {
 app.post('/api/data', (req, res) => {
   fs.writeFileSync(dataFile, JSON.stringify(req.body, null, 2));
   res.json({ success: true });
-});
-
-// Serve index.html for root and any HTML routes, but skip static files
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
 const PORT = process.env.PORT || 3000;
