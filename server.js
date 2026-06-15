@@ -8,10 +8,23 @@ const dataFile = path.join(process.cwd(), 'data.json');
 app.use(express.json());
 app.use(express.static('public'));
 
+// Initialize data.json if it doesn't exist
+const initializeData = () => {
+  if (!fs.existsSync(dataFile)) {
+    fs.writeFileSync(dataFile, JSON.stringify({ assets: [], liabilities: [] }, null, 2));
+  }
+};
+
+initializeData();
+
 //GET and POST Routes
 app.get('/api/data', (req, res) => {
-  const data = JSON.parse(fs.readFileSync(dataFile, 'utf8'));
-  res.json(data);
+  try {
+    const data = JSON.parse(fs.readFileSync(dataFile, 'utf8'));
+    res.json(data);
+  } catch (err) {
+    res.json({ assets: [], liabilities: [] });
+  }
 });
 
 app.post('/api/data', (req, res) => {
