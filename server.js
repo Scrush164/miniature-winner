@@ -17,6 +17,11 @@ const initializeData = () => {
 
 initializeData();
 
+// Serve index.html for root and any HTML routes, but skip static files...hopefully
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
+
 //GET and POST Routes
 app.get('/api/data', (req, res) => {
   try {
