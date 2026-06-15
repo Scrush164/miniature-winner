@@ -36,6 +36,10 @@ app.post('/api/data', (req, res) => {
   fs.writeFileSync(dataFile, JSON.stringify(req.body, null, 2));
   res.json({ success: true });
 });
+//If it can't find the route. Maybe its not going to the public
+app.use((req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
