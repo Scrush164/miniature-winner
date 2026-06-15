@@ -32,8 +32,8 @@ app.post('/api/data', (req, res) => {
   res.json({ success: true });
 });
 
-// Serve index.html for all other routes (SPA fallback) - MUST be last
-app.get('*', (req, res) => {
+// Serve index.html for root and any HTML routes, but skip static files
+app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
