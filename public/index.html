@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+    <div>
+        <header class="navbar">
+            <h1 class="logo">Summer Project.</h1>
+            <nav>
+                <a href="login.html">Login</a>
+                <a href="signup.html" class="btn">SignUp</a>
+            </nav>
+        </header>
+        <main class="container">
+            <section class="hero">
+                <h2>Summer Project</h2>
+                <p>   wealth asset tracker     </p>
+            </section>
+            <section class="calculator">
+	<div class="net-worth-display">
+            <div class="net-worth-label">Your Net Worth</div>
+            <div class="net-worth-value" id="netWorth">$0.00</div>
+        </div>
+                <h3>Enter your Assets or Liabilities</h3>
+                <form id="calculator-form">
+                    <div class="field">
+                        <label for="assetName">Asset Name</label>
+                        <input type="text" id="assetName" placeholder="e.g., Savings Account">
+                    </div>
+
+                    <div class="field">
+                        <label for="assetAmount">Amount</label>
+                        <input type="number" id="assetAmount" placeholder="0">
+			<button class="add-btn" onclick="addAsset(event)">Add</button>
+                    </div>
+			<div id="assetsList"></div>
+                </form>
+
+		<h3>Enter Liabilities</h3>
+                <form id="calculator-form">
+                    <div class="field">
+                        <label for="liabilityName">liability Name</label>
+                        <input type="text" id="liabilityName" placeholder="Car Loan">
+                    </div>
+
+                    <div class="field">
+                        <label for="liabilityAmount">Dollar Amount</label>
+                        <input type="number" id="liabilityAmount" placeholder="0">
+			<button class="add-btn" onclick="addLiability(event)">Add</button>
+                    </div>
+
+			<div id="liabilitiesList"></div>
+                    
+
+                    <button type="submit" class="btn-primary">Submit</button>
+                </form>
+
+
+                <div id="result" class="result hidden"></div>
+            </section>
+        </main>
+        <footer>all rights reserved.</footer>
+    </div>
+</body>
+
+<script src="index.js"></script>
+</html>
