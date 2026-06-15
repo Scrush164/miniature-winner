@@ -6,7 +6,7 @@ const app = express();
 const dataFile = path.join(process.cwd(), 'data.json');
 
 app.use(express.json());
-app.use(express.static(,'public'));
+app.use(express.static('public'));
 
 // Initialize data.json if it doesn't exist
 const initializeData = () => {
