@@ -6,7 +6,7 @@ const app = express();
 const dataFile = path.join(process.cwd(), 'data.json');
 
 app.use(express.json());
-app.use(express.static(__dirname,'public'));
+app.use(express.static(,'public'));
 
 // Initialize data.json if it doesn't exist
 const initializeData = () => {
@@ -16,6 +16,12 @@ const initializeData = () => {
 };
 
 initializeData();
+
+const publicPath = path.join(__dirname, 'public');
+console.log('Serving static files from:', publicPath);
+console.log('Exists?', fs.existsSync(publicPath));
+console.log('Contents:', fs.readdirSync(publicPath));
+
 
 // Serve index.html for root and any HTML routes, but skip static files...hopefully
 app.get('/', (req, res) => {
