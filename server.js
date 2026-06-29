@@ -12,10 +12,10 @@ app.use(express.static('public'));
 
 
 
-const publicPath = path.join(__dirname, 'public');
-console.log('Serving static files from:', publicPath);
-console.log('Exists?', fs.existsSync(publicPath));
-console.log('Contents:', fs.readdirSync(publicPath));
+//const publicPath = path.join(__dirname, 'public');
+//console.log('Serving static files from:', publicPath);
+//console.log('Exists?', fs.existsSync(publicPath));
+//console.log('Contents:', fs.readdirSync(publicPath));
 
 
 // Serve index.html for root and any HTML routes, but skip static files...hopefully
