@@ -1,0 +1,18 @@
+datasource db{
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+
+model Transaction {
+  id        Int      @id @default(autoincrement())
+  amount    Decimal  //Stored as positive
+  name      String?
+  type      String? // determines if it subtracts or adds
+  createdAt DateTime @default(now())
+}   
