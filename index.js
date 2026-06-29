@@ -18,6 +18,8 @@ function getNetWorth(assets,liabilities){
 //much easier than calling local storage on every other function
 //I've become familiar with async and await, i like that more then the then stuff.
 
+//Now that I have a database we need to find a way to make whatever the user writes into something that is turned into a Transaction thingy
+
 async function saveData() {  
   await fetch('/api/data', { 
     method: 'POST',
