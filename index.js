@@ -63,10 +63,19 @@ async function loadData(){
   method: 'GET' //would it be get or request?
  });
 
-    const data = await response.json();
-   
-   if (data.assets) assets = data.assets;
-   if (data.liabilities) liabilities = data.liabilities;
+    const transactions = await response.json();
+    // Reset local arrays
+    assets = [];
+    liabilities = [];
+
+    // Split the unified list back into two arrays for your display logic
+    transactions.forEach(t => {
+        if (t.type === 'asset') {
+            assets.push(t);
+        } else if (t.type === 'liability') {
+            liabilities.push(t);
+        }
+    });
    
    updateDisplay();
 }
@@ -144,11 +153,20 @@ function addAsset(event) {
         return;
     }
 
-    assets.push({ id: Date.now(), name, amount });  // ← ADD TO LIST
+    //assets.push({ id: Date.now(), name, amount });  // ← ADD TO LIST
+
+ // Send single item to DB
+    await fetch('/api/data', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, amount, type: 'asset' }) 
+    });
+ 
     document.getElementById('assetName').value = '';  // Clear form
     document.getElementById('assetAmount').value = '';
     updateDisplay();
-    saveData();
+    loadData();
+    //saveData();
 }
 
 function addLiability(event) {
@@ -161,11 +179,17 @@ function addLiability(event) {
         return;
      }
     
-    liabilities.push({ id: Date.now(), name, amount });
+    //liabilities.push({ id: Date.now(), name, amount });
+     await fetch('/api/data', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, amount, type: 'liability' })
+    });
     document.getElementById('liabilityName').value = '';
     document.getElementById('liabilityAmount').value = '';
     updateDisplay();
-    saveData();
+    loadData();
+    //saveData();
 }
 
 
