@@ -3,6 +3,8 @@
 //I would put all the const variables for assetName, assetAmount, and vice versa for liabilities...
 //But I will have to put the list up here...
 
+import {prisma} from 'prisma
+
 let assets = [];
 let liabilities = [];
 
@@ -42,6 +44,35 @@ async function loadData(){
    
    updateDisplay();
 }
+
+
+// this function needs to translate what was put there into a database fields
+//So it needs to make it into a Transaction, but...do we need to know
+async function saveData() {  
+  await fetch('/api/data', { 
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ assets, liabilities })           // I wondered what api/data leads to, 
+  });
+}
+
+
+async function loadData(){
+ //I found out that fetch api automatically does GET so this is unnecessary
+ const response = await fetch('/api/data',{
+  method: 'GET' //would it be get or request?
+ });
+
+    const data = await response.json();
+   
+   if (data.assets) assets = data.assets;
+   if (data.liabilities) liabilities = data.liabilities;
+   
+   updateDisplay();
+}
+
+
+
 
 
 //function saveData() {
@@ -102,7 +133,7 @@ function updateDisplay() {
 }
 
 
-
+//These functions I dont think need to interact with the database, theyre only for the frontend, then they play the database functions
 function addAsset(event) {
     event.preventDefault();
     const name = document.getElementById('assetName').value;    // Get user input
