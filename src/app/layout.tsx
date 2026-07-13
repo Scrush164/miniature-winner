@@ -1,4 +1,5 @@
 // 
+import './main.css' 
 export const metadata = {
   title: 'Wealth and Asset Tracker',
 }
