@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "main": "server.js",
   "scripts": {
-    "dev": "node server.js",
+  "dev": "next dev",
+  "build": "next build", 
+  "start": "next start"
    "postinstall": "prisma generate" 
   },
   "dependencies": {
