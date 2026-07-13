@@ -6,6 +6,7 @@ export default function Home() {
   const [netWorth, setNetWorth] = useState(0)
   const [assets, setAssets] = useState<{name: string, amount: number}[]>([])
   const [liabilities, setLiabilities] = useState<{name: string, amount: number}[]>([])
+  const transactions = await prisma.transaction.findMany()
 //Actions
   //  adding an asset
   const addAsset = (e: React.FormEvent) => {
@@ -45,7 +46,7 @@ export default function Home() {
     alert('Data saved to database!')
   }
 
-  return (
+return (
     <div>
       <header className="navbar">
         <h1 className="logo">Summer Project.</h1>
@@ -58,4 +59,47 @@ export default function Home() {
       <main className="container">
         <section className="hero">
           <h2>Summer Project</h2>
-          <p>wealth asset tra   
+          <p>wealth asset tracker</p>
+        </section>
+
+        <section className="calculator">
+          <div className="net-worth-display">
+            <div className="net-worth-label">Your Net Worth</div>
+            <div className="net-worth-value">${netWorth.toFixed(2)}</div>
+          </div>
+
+          {/* Asset Input */}
+          <h3>Enter Assets</h3>
+          <form onSubmit={(e) => addEntry(e, 'asset')}>
+            <div className="field">
+              <label>Name</label>
+              <input type="text" name="name" placeholder="e.g. Savings" required />
+            </div>
+            <div className="field">
+              <label>Amount</label>
+              <input type="number" name="amount" placeholder="0" required />
+              <button type="submit" className="add-btn">Add Asset</button>
+            </div>
+          </form>
+
+          {/* Liability Input */}
+          <h3>Enter Liabilities</h3>
+          <form onSubmit={(e) => addEntry(e, 'liability')}>
+            <div className="field">
+              <label>Name</label>
+              <input type="text" name="name" placeholder="e.g. Loan" required />
+            </div>
+            <div className="field">
+              <label>Amount</label>
+              <input type="number" name="amount" placeholder="0" required />
+              <button type="submit" className="add-btn">Add Liability</button>
+            </div>
+          </form>
+
+          <button onClick={handleSubmit} className="btn-primary">Save Total to Database</button>
+        </section>
+      </main>
+      <footer>all rights reserved.</footer>
+    </div>
+  )
+}
