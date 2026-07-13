@@ -8,12 +8,12 @@ export async function POST(request: Request) {
 
   try {
     // 
+}   
     await prisma.Transaction.create({
       data: {
-        assets: JSON.stringify(assets),
-        liabilities: JSON.stringify(liabilities),
-        netWorth: netWorth,
-        createdAt: new Date()
+        amount: body.amount,
+        name: body.name,
+        type: body.type,
       }
     })
     return NextResponse.json({ success: true })
