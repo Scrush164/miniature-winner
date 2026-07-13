@@ -1,14 +1,11 @@
 "use client"
 import { useState } from 'react'
 
-//DATA
 export default function Home() {
   const [netWorth, setNetWorth] = useState(0)
   const [assets, setAssets] = useState<{name: string, amount: number}[]>([])
   const [liabilities, setLiabilities] = useState<{name: string, amount: number}[]>([])
 
-//Actions
-  //  adding an asset
   const addAsset = (e: React.FormEvent) => {
     e.preventDefault()
     const form = e.target as HTMLFormElement
@@ -21,7 +18,6 @@ export default function Home() {
     form.reset()
   }
 
-  //  adding a liability
   const addLiability = (e: React.FormEvent) => {
     e.preventDefault()
     const form = e.target as HTMLFormElement
@@ -34,7 +30,6 @@ export default function Home() {
     form.reset()
   }
 
-  
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     
@@ -46,7 +41,7 @@ export default function Home() {
     alert('Data saved to database!')
   }
 
-return (
+  return (
     <div>
       <header className="navbar">
         <h1 className="logo">Summer Project.</h1>
@@ -68,7 +63,6 @@ return (
             <div className="net-worth-value">${netWorth.toFixed(2)}</div>
           </div>
 
-          {/* Asset Input */}
           <h3>Enter Assets</h3>
           <form onSubmit={addAsset}>
             <div className="field">
@@ -82,7 +76,6 @@ return (
             </div>
           </form>
 
-          {/* Liability Input */}
           <h3>Enter Liabilities</h3>
           <form onSubmit={addLiability}>
             <div className="field">
