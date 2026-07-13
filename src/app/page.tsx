@@ -1,12 +1,12 @@
 "use client"
-import {prisma} from '@/lib/prisma'
 import { useState } from 'react'
+
 //DATA
 export default function Home() {
   const [netWorth, setNetWorth] = useState(0)
   const [assets, setAssets] = useState<{name: string, amount: number}[]>([])
   const [liabilities, setLiabilities] = useState<{name: string, amount: number}[]>([])
-  const transactions = await prisma.transaction.findMany()
+
 //Actions
   //  adding an asset
   const addAsset = (e: React.FormEvent) => {
@@ -70,28 +70,28 @@ return (
 
           {/* Asset Input */}
           <h3>Enter Assets</h3>
-          <form onSubmit={(e) => addEntry(e, 'asset')}>
+          <form onSubmit={addAsset}>
             <div className="field">
               <label>Name</label>
-              <input type="text" name="name" placeholder="e.g. Savings" required />
+              <input type="text" name="assetName" placeholder="e.g. Savings" required />
             </div>
             <div className="field">
               <label>Amount</label>
-              <input type="number" name="amount" placeholder="0" required />
+              <input type="number" name="assetAmount" placeholder="0" required />
               <button type="submit" className="add-btn">Add Asset</button>
             </div>
           </form>
 
           {/* Liability Input */}
           <h3>Enter Liabilities</h3>
-          <form onSubmit={(e) => addEntry(e, 'liability')}>
+          <form onSubmit={addLiability}>
             <div className="field">
               <label>Name</label>
-              <input type="text" name="name" placeholder="e.g. Loan" required />
+              <input type="text" name="liabilityName" placeholder="e.g. Loan" required />
             </div>
             <div className="field">
               <label>Amount</label>
-              <input type="number" name="amount" placeholder="0" required />
+              <input type="number" name="liabilityAmount" placeholder="0" required />
               <button type="submit" className="add-btn">Add Liability</button>
             </div>
           </form>
