@@ -1,5 +1,5 @@
 "use client"
-
+import {prisma} from '@/lib/prisma'
 import { useState } from 'react'
 //DATA
 export default function Home() {
