@@ -2,6 +2,7 @@
 import { useState, useEffect } from 'react'
 
 export default function Home() {
+  const [loading, setLoading] = useState(true)
   const [netWorth, setNetWorth] = useState(0)
   const [assets, setAssets] = useState<{name: string, amount: number}[]>([])
   const [liabilities, setLiabilities] = useState<{name: string, amount: number}[]>([])
