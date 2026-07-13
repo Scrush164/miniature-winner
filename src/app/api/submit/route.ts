@@ -8,7 +8,7 @@ export async function POST(request: Request) {
 
   try {
     // 
-    await prisma.yourModel.create({
+    await prisma.Transaction.create({
       data: {
         assets: JSON.stringify(assets),
         liabilities: JSON.stringify(liabilities),
