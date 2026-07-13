@@ -7,7 +7,7 @@ export async function POST(request: Request) {
   const { assets, liabilities, netWorth, amount, name, type } = body
 
 try{
-    await prisma.Transaction.create({
+    await prisma.transaction.create({
       data: {
         amount: body.amount,
         name: body.name,
