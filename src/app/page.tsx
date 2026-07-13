@@ -1,5 +1,5 @@
 "use client"
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 export default function Home() {
   const [netWorth, setNetWorth] = useState(0)
