@@ -4,7 +4,7 @@ import { prisma } from '@/lib/prisma'
 
 export async function POST(request: Request) {
   const body = await request.json()
-  const { assets, liabilities, netWorth } = body
+  const { assets, liabilities, netWorth, amount, name, type } = body
 
 try{
     await prisma.Transaction.create({
