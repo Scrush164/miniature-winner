@@ -8,7 +8,7 @@ export async function GET() {
   try {
     // Fetch the most recent entry
     //or maybe it should say findMany?
-    const latestEntry = await prisma.transaction.findFirst({
+    const latestEntry = await prisma.transaction.findMany({
       orderBy: { id: 'desc' },
     })
 
