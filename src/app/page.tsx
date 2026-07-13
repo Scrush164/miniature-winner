@@ -6,6 +6,19 @@ export default function Home() {
   const [assets, setAssets] = useState<{name: string, amount: number}[]>([])
   const [liabilities, setLiabilities] = useState<{name: string, amount: number}[]>([])
 
+  //It wont save once you refresh so this is upposed to load up previous stuff upon loading.
+  useEffect(() => {
+    fetch('/api/submit') 
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.latestEntry) {
+          setNetWorth(data.latestEntry.amount)
+          
+        }
+        setLoading(false)
+      })
+  }, [])
+
   const addAsset = (e: React.FormEvent) => {
     e.preventDefault()
     const form = e.target as HTMLFormElement
