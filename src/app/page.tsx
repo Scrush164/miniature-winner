@@ -58,15 +58,15 @@ export default function Home() {
   }
 
     // Force a crash
-  throw new Error("This is a test error to verify error.tsx");
+  //throw new Error("This is a test error to verify error.tsx");
 
   return (
     <div>
       <header className="navbar">
         <h1 className="logo">Summer Project.</h1>
         <nav>
-          <a href="/login">Login</a>
-          <a href="/signup" className="btn">SignUp</a>
+          <a href="">Login</a>
+          <a href="" className="btn">SignUp</a>
         </nav>
       </header>
 
