@@ -1,7 +1,7 @@
 "use client"
 import { useState, useEffect } from 'react'
 
-export default function Home() {
+export default async function Home() {
   //Testing load
 await new Promise((resolve) => setTimeout(resolve, 3000));
 
