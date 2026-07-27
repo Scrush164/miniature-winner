@@ -1,7 +1,7 @@
 "use client"
 import { useState, useEffect } from 'react'
 
-export default async function Home() {
+export default function Home() {
  
   const [loading, setLoading] = useState(true)
   const [netWorth, setNetWorth] = useState(0)
@@ -64,8 +64,8 @@ export default async function Home() {
       <header className="navbar">
         <h1 className="logo">Summer Project.</h1>
         <nav>
-          <a href="">Login</a>
-         <a href="" className="btn">SignUp</a>
+          <a href="#">Login</a>
+         <a href="#" className="btn">SignUp</a>
         </nav>
       </header>
 
