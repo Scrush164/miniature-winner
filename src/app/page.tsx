@@ -30,7 +30,7 @@ export default function Home() {
     
     const newAsset = { name, amount }
     setAssets([...assets, newAsset])
-    setNetWorth(prev => prev + amount)
+    setNetWorth(prev => prev + amount)=> setTimeout(resolve, 3000)
     form.reset()
   }
 
@@ -53,7 +53,7 @@ export default function Home() {
       method: 'POST',
       body: JSON.stringify({ assets, liabilities, netWorth }),
       headers: { 'Content-Type': 'application/json' }
-    })  => setTimeout(resolve, 3000)
+    })
     alert('Data saved to database!')
   }
 
