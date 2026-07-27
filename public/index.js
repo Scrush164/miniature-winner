@@ -3,8 +3,6 @@
 //I would put all the const variables for assetName, assetAmount, and vice versa for liabilities...
 //But I will have to put the list up here...
 
-import {prisma} from 'prisma
-
 let assets = [];
 let liabilities = [];
 
@@ -19,8 +17,6 @@ function getNetWorth(assets,liabilities){
 //The Fetch helper functions are definitely actions, Maybe I just have to replace the logic inside the first two
 //much easier than calling local storage on every other function
 //I've become familiar with async and await, i like that more then the then stuff.
-
-//Now that I have a database we need to find a way to make whatever the user writes into something that is turned into a Transaction thingy
 
 async function saveData() {  
   await fetch('/api/data', { 
@@ -44,44 +40,6 @@ async function loadData(){
    
    updateDisplay();
 }
-
-
-// this function needs to translate what was put there into a database fields
-//So it needs to make it into a Transaction, but...do we need to know
-async function saveData() {  
-  await fetch('/api/data', { 
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ assets, liabilities })           // I wondered what api/data leads to, 
-  });
-}
-
-
-async function loadData(){
- //I found out that fetch api automatically does GET so this is unnecessary
- const response = await fetch('/api/data',{
-  method: 'GET' //would it be get or request?
- });
-
-    const transactions = await response.json();
-    // Reset local arrays
-    assets = [];
-    liabilities = [];
-
-    // Split the unified list back into two arrays for your display logic
-    transactions.forEach(t => {
-        if (t.type === 'asset') {
-            assets.push(t);
-        } else if (t.type === 'liability') {
-            liabilities.push(t);
-        }
-    });
-   
-   updateDisplay();
-}
-
-
-
 
 
 //function saveData() {
@@ -142,7 +100,7 @@ function updateDisplay() {
 }
 
 
-//These functions I dont think need to interact with the database, theyre only for the frontend, then they play the database functions
+
 function addAsset(event) {
     event.preventDefault();
     const name = document.getElementById('assetName').value;    // Get user input
@@ -153,20 +111,11 @@ function addAsset(event) {
         return;
     }
 
-    //assets.push({ id: Date.now(), name, amount });  // ← ADD TO LIST
-
- // Send single item to DB
-    await fetch('/api/data', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name, amount, type: 'asset' }) 
-    });
- 
+    assets.push({ id: Date.now(), name, amount });  // ← ADD TO LIST
     document.getElementById('assetName').value = '';  // Clear form
     document.getElementById('assetAmount').value = '';
     updateDisplay();
-    loadData();
-    //saveData();
+    saveData();
 }
 
 function addLiability(event) {
@@ -179,17 +128,11 @@ function addLiability(event) {
         return;
      }
     
-    //liabilities.push({ id: Date.now(), name, amount });
-     await fetch('/api/data', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name, amount, type: 'liability' })
-    });
+    liabilities.push({ id: Date.now(), name, amount });
     document.getElementById('liabilityName').value = '';
     document.getElementById('liabilityAmount').value = '';
     updateDisplay();
-    loadData();
-    //saveData();
+    saveData();
 }
 
 
