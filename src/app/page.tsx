@@ -2,11 +2,7 @@
 import { useState, useEffect } from 'react'
 
 export default async function Home() {
-  //Testing load
-await new Promise((resolve) => setTimeout(resolve, 3000));
-
-
-
+ 
   const [loading, setLoading] = useState(true)
   const [netWorth, setNetWorth] = useState(0)
   const [assets, setAssets] = useState<{name: string, amount: number}[]>([])
