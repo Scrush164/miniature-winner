@@ -65,8 +65,8 @@ export default function Home() {
       <header className="navbar">
         <h1 className="logo">Summer Project.</h1>
         <nav>
-          <a href="">Login</a>
-          <a href="" className="btn">SignUp</a>
+         <!-- <a href="">Login</a> -->
+         <a href="" className="btn">SignUp</a>
         </nav>
       </header>
 
