@@ -2,6 +2,9 @@
 import { useState, useEffect } from 'react'
 
 export default function Home() {
+  //Testing load
+await new Promise((resolve) => setTimeout(resolve, 3000));
+
 
 
   const [loading, setLoading] = useState(true)
@@ -30,7 +33,7 @@ export default function Home() {
     
     const newAsset = { name, amount }
     setAssets([...assets, newAsset])
-    setNetWorth(prev => prev + amount)=> setTimeout(resolve, 3000)
+    setNetWorth(prev => prev + amount)
     form.reset()
   }
 
