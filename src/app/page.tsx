@@ -2,6 +2,9 @@
 import { useState, useEffect } from 'react'
 
 export default function Home() {
+  // Force a crash
+  throw new Error("This is a test error to verify error.tsx");
+
   const [loading, setLoading] = useState(true)
   const [netWorth, setNetWorth] = useState(0)
   const [assets, setAssets] = useState<{name: string, amount: number}[]>([])
