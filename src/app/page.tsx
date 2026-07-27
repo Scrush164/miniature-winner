@@ -53,7 +53,7 @@ export default function Home() {
       method: 'POST',
       body: JSON.stringify({ assets, liabilities, netWorth }),
       headers: { 'Content-Type': 'application/json' }
-    })
+    })  => setTimeout(resolve, 3000)
     alert('Data saved to database!')
   }
 
@@ -65,7 +65,7 @@ export default function Home() {
       <header className="navbar">
         <h1 className="logo">Summer Project.</h1>
         <nav>
-         <!-- <a href="">Login</a> -->
+          <a href="">Login</a>
          <a href="" className="btn">SignUp</a>
         </nav>
       </header>
